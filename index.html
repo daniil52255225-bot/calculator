@@ -9,27 +9,29 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Courier New', monospace;
+            image-rendering: pixelated;
         }
         
         body {
-            background: linear-gradient(135deg, #2c1810, #3a2418);
+            background: #2c1810;
             color: #ffcc99;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             padding: 20px;
             overflow: hidden;
+            font-family: 'Press Start 2P', cursive, monospace;
         }
         
         .container {
-            max-width: 800px;
-            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 20px;
+            max-width: 800px;
+            width: 100%;
         }
         
         header {
@@ -38,78 +40,86 @@
         }
         
         h1 {
-            font-size: 2.5rem;
-            text-shadow: 0 0 10px #ff9900, 0 0 20px #ff6600;
+            font-size: 24px;
+            text-shadow: 2px 2px 0 #ff6600, 4px 4px 0 #993300;
             margin-bottom: 10px;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
         
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 12px;
             color: #ffaa66;
+            margin-bottom: 20px;
         }
         
-        .calculator-container {
+        .game-area {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
             width: 100%;
         }
         
         .calculator {
             background: #3a2c1e;
             border: 4px solid #5a3c2e;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 0 20px rgba(255, 153, 0, 0.3);
-            width: 300px;
+            border-radius: 0;
+            padding: 15px;
+            box-shadow: 
+                inset -2px -2px 0 #2a1c0e,
+                inset 2px 2px 0 #8b5a2b,
+                0 0 20px rgba(255, 153, 0, 0.5);
+            width: 260px;
+            image-rendering: pixelated;
         }
         
         .display {
             background: #1a120b;
-            border: 2px solid #8b5a2b;
-            border-radius: 5px;
-            padding: 15px;
+            border: 3px solid #8b5a2b;
+            border-radius: 0;
+            padding: 12px;
             margin-bottom: 15px;
             text-align: right;
-            font-size: 1.8rem;
-            min-height: 70px;
+            font-size: 18px;
+            min-height: 60px;
             display: flex;
             align-items: center;
             justify-content: flex-end;
             overflow: hidden;
             color: #ffcc99;
-            text-shadow: 0 0 5px #ff9900;
+            text-shadow: 1px 1px 0 #ff9900;
+            box-shadow: inset 2px 2px 0 #0a0603;
+            font-family: 'Press Start 2P', cursive, monospace;
         }
         
         .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            gap: 8px;
         }
         
         button {
             background: #5a3c2e;
-            border: 2px solid #8b5a2b;
-            border-radius: 5px;
+            border: 3px solid #8b5a2b;
+            border-radius: 0;
             color: #ffcc99;
-            font-size: 1.2rem;
-            padding: 15px 0;
+            font-size: 16px;
+            padding: 12px 0;
             cursor: pointer;
-            transition: all 0.2s;
-            text-shadow: 0 0 5px rgba(255, 153, 0, 0.5);
+            transition: all 0.1s;
+            text-shadow: 1px 1px 0 #ff9900;
+            font-family: 'Press Start 2P', cursive, monospace;
+            box-shadow: inset -2px -2px 0 #4a2c1e;
         }
         
         button:hover {
             background: #6a4c3e;
             transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
         
         button:active {
             transform: translateY(0);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 2px 2px 0 #4a2c1e;
         }
         
         .equals {
@@ -123,64 +133,81 @@
         
         .answers-container {
             position: relative;
-            width: 100%;
+            width: 300px;
             height: 400px;
-            border: 2px solid #5a3c2e;
-            border-radius: 10px;
+            border: 4px solid #5a3c2e;
             overflow: hidden;
-            background: rgba(26, 18, 11, 0.5);
+            background: rgba(26, 18, 11, 0.7);
+            box-shadow: 
+                inset -2px -2px 0 #2a1c0e,
+                inset 2px 2px 0 #8b5a2b;
         }
         
         .falling-answer {
             position: absolute;
-            font-size: 1.5rem;
+            font-size: 16px;
             color: #ffcc99;
-            text-shadow: 0 0 10px #ff9900;
-            padding: 10px 15px;
-            background: rgba(90, 60, 46, 0.7);
-            border-radius: 5px;
-            border: 1px solid #8b5a2b;
+            text-shadow: 1px 1px 0 #ff9900;
+            padding: 8px 12px;
+            background: #5a3c2e;
+            border: 2px solid #8b5a2b;
+            border-radius: 0;
             animation: fall linear forwards;
+            font-family: 'Press Start 2P', cursive, monospace;
+            box-shadow: 2px 2px 0 #4a2c1e;
+            z-index: 10;
         }
         
         @keyframes fall {
-            to {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
                 transform: translateY(400px);
                 opacity: 0;
             }
         }
         
         .instructions {
-            background: rgba(58, 44, 30, 0.7);
-            border: 2px solid #5a3c2e;
-            border-radius: 10px;
+            background: #3a2c1e;
+            border: 4px solid #5a3c2e;
+            border-radius: 0;
             padding: 15px;
             margin-top: 20px;
             width: 100%;
+            max-width: 600px;
+            box-shadow: 
+                inset -2px -2px 0 #2a1c0e,
+                inset 2px 2px 0 #8b5a2b;
         }
         
         .instructions h2 {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             color: #ffaa66;
+            font-size: 16px;
+            text-shadow: 1px 1px 0 #ff6600;
         }
         
         .instructions p {
             margin-bottom: 10px;
             line-height: 1.5;
+            font-size: 12px;
         }
         
         .history {
-            margin-top: 10px;
-            max-height: 150px;
+            margin-top: 15px;
+            max-height: 120px;
             overflow-y: auto;
             padding: 10px;
-            background: rgba(26, 18, 11, 0.5);
-            border-radius: 5px;
+            background: #2a1c0e;
+            border: 2px solid #5a3c2e;
         }
         
         .history-item {
             padding: 5px;
             border-bottom: 1px solid #5a3c2e;
+            font-size: 10px;
         }
         
         .glow {
@@ -188,33 +215,60 @@
         }
         
         @keyframes glow {
-            0% { text-shadow: 0 0 5px #ff9900; }
-            50% { text-shadow: 0 0 20px #ff9900, 0 0 30px #ff6600; }
-            100% { text-shadow: 0 0 5px #ff9900; }
+            0% { text-shadow: 1px 1px 0 #ff9900; }
+            50% { text-shadow: 1px 1px 0 #ff9900, 2px 2px 0 #ff6600, 3px 3px 0 #993300; }
+            100% { text-shadow: 1px 1px 0 #ff9900; }
+        }
+        
+        .pixel-border {
+            border-style: solid;
+            border-width: 4px;
+            border-color: #8b5a2b #5a3c2e #5a3c2e #8b5a2b;
+        }
+        
+        /* Пиксельные узоры для фона */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 153, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 153, 0, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
         }
         
         @media (max-width: 600px) {
-            .calculator {
-                width: 100%;
-                max-width: 300px;
+            .game-area {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .answers-container {
+                width: 260px;
+                height: 200px;
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 18px;
             }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="bg-pattern"></div>
     <div class="container">
         <header>
-            <h1>Пиксельный калькулятор</h1>
-            <p class="subtitle">Решай примеры и запоминай ответы!</p>
+            <h1>ПИКСЕЛЬНЫЙ КАЛЬКУЛЯТОР</h1>
+            <p class="subtitle">Решай примеры и запоминай падающие ответы!</p>
         </header>
         
-        <div class="calculator-container">
-            <div class="calculator">
-                <div class="display" id="display">0</div>
+        <div class="game-area">
+            <div class="calculator pixel-border">
+                <div class="display pixel-border" id="display">0</div>
                 <div class="buttons">
                     <button class="clear" onclick="clearDisplay()">C</button>
                     <button onclick="appendToDisplay('/')">/</button>
@@ -224,36 +278,36 @@
                     <button onclick="appendToDisplay('7')">7</button>
                     <button onclick="appendToDisplay('8')">8</button>
                     <button onclick="appendToDisplay('9')">9</button>
-                    <button onclick="appendToDisplay('+')">+</button>
+                    <button onclick="appendToDisplay('+')" style="grid-row: span 2;">+</button>
                     
                     <button onclick="appendToDisplay('4')">4</button>
                     <button onclick="appendToDisplay('5')">5</button>
                     <button onclick="appendToDisplay('6')">6</button>
-                    <button onclick="appendToDisplay('.')">.</button>
                     
                     <button onclick="appendToDisplay('1')">1</button>
                     <button onclick="appendToDisplay('2')">2</button>
                     <button onclick="appendToDisplay('3')">3</button>
                     <button onclick="appendToDisplay('0')">0</button>
                     
+                    <button onclick="appendToDisplay('.')">.</button>
                     <button class="equals" onclick="calculate()">=</button>
                 </div>
             </div>
             
-            <div class="answers-container" id="answers-container">
+            <div class="answers-container pixel-border" id="answers-container">
                 <!-- Падающие ответы будут появляться здесь -->
             </div>
         </div>
         
-        <div class="instructions">
-            <h2>Как играть:</h2>
+        <div class="instructions pixel-border">
+            <h2>КАК ИГРАТЬ:</h2>
             <p>1. Вводи примеры на калькуляторе и нажимай "="</p>
             <p>2. Ответ появится на экране и начнет падать вниз</p>
             <p>3. Запомни ответ до того, как он исчезнет</p>
             <p>4. Используй запомненные ответы для решения следующих примеров</p>
             
             <div class="history">
-                <h3>История вычислений:</h3>
+                <h3>ИСТОРИЯ:</h3>
                 <div id="history-list"></div>
             </div>
         </div>
@@ -313,7 +367,7 @@
                 shouldResetDisplay = true;
                 updateDisplay();
             } catch (error) {
-                currentInput = 'Ошибка';
+                currentInput = 'ОШИБКА';
                 updateDisplay();
                 shouldResetDisplay = true;
             }
@@ -324,25 +378,33 @@
             answerElement.classList.add('falling-answer');
             answerElement.textContent = answer;
             
-            // Случайная позиция по горизонтали
-            const leftPosition = Math.random() * (answersContainer.offsetWidth - 100);
+            // Позиционируем ответ прямо под калькулятором
+            const calculatorRect = document.querySelector('.calculator').getBoundingClientRect();
+            const containerRect = answersContainer.getBoundingClientRect();
+            
+            // Вычисляем позицию относительно контейнера с ответами
+            const leftPosition = calculatorRect.left - containerRect.left + (calculatorRect.width / 2) - 30;
+            
             answerElement.style.left = `${leftPosition}px`;
+            answerElement.style.top = `0px`;
             
             // Случайная длительность падения
-            const duration = 3 + Math.random() * 4;
+            const duration = 3 + Math.random() * 2;
             answerElement.style.animationDuration = `${duration}s`;
             
             answersContainer.appendChild(answerElement);
             
             // Удаляем элемент после завершения анимации
             setTimeout(() => {
-                answerElement.remove();
+                if (answerElement.parentNode) {
+                    answerElement.remove();
+                }
             }, duration * 1000);
         }
         
         function addToHistory(calculation) {
             calculationHistory.unshift(calculation);
-            if (calculationHistory.length > 10) {
+            if (calculationHistory.length > 8) {
                 calculationHistory.pop();
             }
             
@@ -383,6 +445,19 @@
                 clearDisplay();
             }
         });
+        
+        // Создаем несколько начальных падающих ответов для демонстрации
+        setTimeout(() => {
+            createFallingAnswer("42");
+        }, 1000);
+        
+        setTimeout(() => {
+            createFallingAnswer("3.14");
+        }, 2500);
+        
+        setTimeout(() => {
+            createFallingAnswer("100");
+        }, 4000);
     </script>
 </body>
 </html>
